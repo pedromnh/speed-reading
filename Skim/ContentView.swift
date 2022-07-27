@@ -19,5 +19,5 @@ struct ContentView_Previews: PreviewProvider {
             ForEach(ColorScheme.allCases, id: \.self) {
                  ContentView().preferredColorScheme($0)
             }
-        }
+        } 
 }
