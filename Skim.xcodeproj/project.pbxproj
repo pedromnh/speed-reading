@@ -11,6 +11,7 @@
 		880E00842891207900459185 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880E00832891207900459185 /* ContentView.swift */; };
 		880E00862891207A00459185 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 880E00852891207A00459185 /* Assets.xcassets */; };
 		880E00892891207A00459185 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 880E00882891207A00459185 /* Preview Assets.xcassets */; };
+		884E3FB029BB56B300B94ACE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 884E3FAF29BB56B300B94ACE /* SwiftSoup */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				884E3FB029BB56B300B94ACE /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +85,9 @@
 			dependencies = (
 			);
 			name = Skim;
+			packageProductDependencies = (
+				884E3FAF29BB56B300B94ACE /* SwiftSoup */,
+			);
 			productName = Skim;
 			productReference = 880E007E2891207900459185 /* Skim.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +116,9 @@
 				Base,
 			);
 			mainGroup = 880E00752891207900459185;
+			packageReferences = (
+				884E3FAE29BB56B300B94ACE /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = 880E007F2891207900459185 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -341,6 +349,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		884E3FAE29BB56B300B94ACE /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		884E3FAF29BB56B300B94ACE /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 884E3FAE29BB56B300B94ACE /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 880E00762891207900459185 /* Project object */;
 }

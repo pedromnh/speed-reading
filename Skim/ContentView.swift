@@ -6,23 +6,77 @@
 //
 
 import SwiftUI
+import SwiftSoup
 
 struct ContentView: View {
-    @State private var phrase = "As @Paul and @John have suggested, you can use a Timer to do this. However, if the code does need to be asynchronous for some reason, you can reimplement the loop asynchronously by making it recursive:"
+    @Environment(\.colorScheme) var colorScheme
+    @State private var phrase = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultricies augue quis lectus facilisis posuere. Quisque vel tempus ante. Vivamus molestie arcu vitae lacus pharetra pharetra. Sed nec ligula sit amet purus consequat mollis. Duis tristique massa sed vestibulum tincidunt. Fusce ultricies, neque id tincidunt consequat, velit sapien malesuada mi, in vulputate nulla tellus vitae elit. Pellentesque scelerisque vitae justo sed volutpat. Duis sodales dictum eleifend. Nunc a massa dictum, vulputate urna non, porttitor magna. Fusce convallis quam sed hendrerit viverra. Mauris hendrerit urna ac fringilla aliquet. Aenean lacinia viverra efficitur. Ut sollicitudin, purus ac fermentum tincidunt, urna turpis condimentum orci, eget dictum quam sapien euismod risus."
+    @State private var wpm = 750.0
+    @State private var minWpm = 0
+    @State private var maxWpm = 1500
     
     
     var body: some View {
         VStack {
-            Button(
-                action: {readString(sentence: phrase, wpm: 0.1)},
-                label: {Text("Click me!")
-                        .fontWeight(.heavy)
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(15)
-            })
-        }
+            
+            HStack {
+//                Button(
+//                    action: {isUrl(text: pasteText()!)},
+//                    label: {Text("Test Button")
+//                            .fontWeight(.heavy)
+//                            .foregroundColor(.white)
+//                            .padding()
+//                            .background(Color.blue)
+//                            .cornerRadius(15)
+//                })
+                Button(
+                    action: {whatToPrint(isUrl: isUrl(text: pasteText()!), sentence: pasteText()!, wpm: wpm)},
+                    label: {Text("+")
+                            .fontWeight(.heavy)
+                            .padding()
+                            .background(colorScheme == .dark ? Color.white : Color.black)
+                            .foregroundColor(colorScheme == .dark ? Color.black : Color.white)
+                            .clipShape(Circle())
+                })
+            }
+            
+            
+            
+            VStack(spacing: 0) {
+//                Text("WPM: \(Int(wpm))").frame(alignment: .center)
+                HStack(spacing: 0) {
+                    TextField("WPM: \(Int(wpm))", text: Binding(get: {
+                        String(Int(wpm))
+                    }, set: { newValue in
+                        if let value = Double(newValue), (minWpm...maxWpm).contains(Int(value)) {
+                            wpm = value
+                        }
+                    }))
+                    .keyboardType(.numberPad)
+                    .frame(alignment: .center)
+                    .multilineTextAlignment(.center)
+                    .font(Font.italic(.body)())
+                    .onTapGesture {
+                        wpm = 0
+                    }
+                }.frame(alignment: .center)
+                
+                Slider(value: $wpm, in: Double(minWpm)...Double(maxWpm)) {
+                } minimumValueLabel: {
+//                    Text("\(minWpm)")
+                } maximumValueLabel: {
+//                    Text("\(maxWpm)")
+                }.accentColor(colorScheme == .dark ? Color.white : Color.black)
+                    .padding(.horizontal)
+                    .scaleEffect(x: 1.0, y: 0.3, anchor: .center) // Make the slider thinner
+                    .background(
+                        Capsule()
+                            .fill(colorScheme == .dark ? Color.black : Color.white) // Background color
+                            .frame(height: 8))
+            }
+            
+            
+        }.padding()
     }
     
 }
@@ -30,6 +84,8 @@ struct ContentView: View {
 
 func readString(sentence: String, wpm: Double) {
     let words = sentence.components(separatedBy: " ")
+    
+    print(sentence)
     
     var i = 0
     _ = Timer.scheduledTimer(withTimeInterval: wpm, repeats: true) { t in
@@ -41,10 +97,89 @@ func readString(sentence: String, wpm: Double) {
     }
 }
 
-func calculateWpmSpeed(wpm: Double) -> Double {
-    let wordsPerSecond = wpm / 60
-    return 1 / wordsPerSecond
+
+func getTextFromUrl(urlToRead: String) -> String {
+    if let url = URL(string: urlToRead) {
+        do {
+            let contentOfURL = try String(contentsOf: url)
+            let html = contentOfURL
+            let doc: Document = try SwiftSoup.parse(html)
+            return try doc.text()
+        } catch {
+            print("Error: \(error)")
+            return "Error: \(error)"
+        }
+    } else {
+        print("Invalid URL")
+        return "Invalid URL"
+    }
 }
+
+
+
+func readStringFromUrl(urlToRead: String, wpm: Double) {
+    Task.init() {
+        if let url = URL(string: urlToRead) {
+            do {
+                let contentOfURL = try String (contentsOf: url)
+                
+                do{
+                    let html = contentOfURL
+                    let doc: Document = try SwiftSoup.parse(html)
+//                    try print(doc.text())
+                    
+//                    Gotta cut the sentence into an array of strings of single words
+                    try readString(sentence: doc.text(), wpm: 50)
+                }catch Exception.Error(_, _)
+                {
+                    print("")
+                }catch{
+                    print("")
+                }
+            }
+        }
+            
+    }
+    
+//    do{
+//       let html = "<html><head><title>First parse</title></head>"
+//                + "<body><p>Parsed HTML into a doc.</p></body></html>"
+//       let doc: Document = try SwiftSoup.parse(html)
+//       try print(doc.text())
+//    }catch Exception.Error(_, _)
+//    {
+//        print("")
+//    }catch{
+//        print("")
+//    }
+}
+
+func wpmSpeed(wpm: Double) -> Double {
+    return 1 / (wpm / 60)
+}
+
+func pasteText() -> String? {
+    weak var pb: UIPasteboard? = .general
+    guard let text = pb?.string else { return nil }
+    
+    let cleanedText = text.replacingOccurrences(of: "[\\n\\s]+", with: " ", options: .regularExpression)
+    return cleanedText
+}
+
+
+func isUrl(text: String) -> Bool {
+    return text.hasPrefix("http") || text.hasPrefix("www")
+}
+
+
+func whatToPrint(isUrl: Bool, sentence: String, wpm: Double) {
+    if isUrl {
+        readString(sentence: getTextFromUrl(urlToRead: pasteText() ?? "Error pasting"), wpm: wpmSpeed(wpm: wpm))
+    } else{
+        readString(sentence: pasteText() ?? "Error", wpm: wpmSpeed(wpm: wpm))
+    }
+}
+
 
 
 struct ContentView_Previews: PreviewProvider {
