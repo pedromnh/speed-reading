@@ -9,11 +9,11 @@ import SwiftUI
 struct ReadingView: View {
     @Environment(\.colorScheme) var colorScheme
     var wpm: Double
+    var articleBody: String
     @State private var currentIndex = 0
     @State private var isReading = false
     @State private var displayedWord: String = "►"
     @State private var hasEnded = false
-    let testPhrase = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla erat ligula, tristique at sem faucibus, vulputate iaculis augue. Sed faucibus turpis risus, nec venenatis orci bibendum sed. Vestibulum congue placerat augue in interdum. Praesent pretium risus a dapibus dapibus. Sed faucibus euismod erat, ac luctus lectus molestie sed."
 
     var body: some View {
         VStack {
@@ -28,7 +28,7 @@ struct ReadingView: View {
                                 isReading = false
                             } else {
                                 isReading = true
-                                if currentIndex >= testPhrase.components(separatedBy: " ").count {
+                                if currentIndex >= articleBody.components(separatedBy: " ").count {
                                     currentIndex = 0
                                 }
                                 readWords(wpm: wpm)
@@ -36,7 +36,7 @@ struct ReadingView: View {
                         }
                     }
                 }
-                .foregroundColor(isReading || hasEnded ? .black : .blue)
+                .foregroundColor((isReading || hasEnded) ? (colorScheme == .dark ? .white : .black) : .blue)
 
             if hasEnded {
                 Button(action: {
@@ -62,7 +62,7 @@ struct ReadingView: View {
     }
 
     func readWords(wpm: Double) {
-        let words = testPhrase.components(separatedBy: " ")
+        let words = articleBody.components(separatedBy: " ")
 
         if currentIndex < words.count {
             displayedWord = words[currentIndex]
@@ -90,6 +90,6 @@ struct ReadingView: View {
 
 struct ReadingView_Previews: PreviewProvider {
     static var previews: some View {
-        ReadingView(wpm: 200) 
+        ReadingView(wpm: 200, articleBody: "This is a test phrase for preview.")
     }
 }

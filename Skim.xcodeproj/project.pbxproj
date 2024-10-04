@@ -12,6 +12,11 @@
 		880E00862891207A00459185 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 880E00852891207A00459185 /* Assets.xcassets */; };
 		880E00892891207A00459185 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 880E00882891207A00459185 /* Preview Assets.xcassets */; };
 		884E3FB029BB56B300B94ACE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 884E3FAF29BB56B300B94ACE /* SwiftSoup */; };
+		887654642CB04D5F001FE69C /* FileStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887654632CB04D5F001FE69C /* FileStorageManager.swift */; };
+		8876546A2CB0532D001FE69C /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887654692CB0532C001FE69C /* Article.swift */; };
+		8876546C2CB05374001FE69C /* ArticleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876546B2CB05373001FE69C /* ArticleListView.swift */; };
+		887654702CB05788001FE69C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876546F2CB05786001FE69C /* SettingsView.swift */; };
+		887654722CB05960001FE69C /* SettingsPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887654712CB05960001FE69C /* SettingsPopupView.swift */; };
 		88C0D60B2AC73D000011836A /* ReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0D60A2AC73D000011836A /* ReadingView.swift */; };
 /* End PBXBuildFile section */
 
@@ -21,6 +26,11 @@
 		880E00832891207900459185 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		880E00852891207A00459185 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		880E00882891207A00459185 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		887654632CB04D5F001FE69C /* FileStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageManager.swift; sourceTree = "<group>"; };
+		887654692CB0532C001FE69C /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		8876546B2CB05373001FE69C /* ArticleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListView.swift; sourceTree = "<group>"; };
+		8876546F2CB05786001FE69C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		887654712CB05960001FE69C /* SettingsPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPopupView.swift; sourceTree = "<group>"; };
 		88C0D60A2AC73D000011836A /* ReadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -55,11 +65,16 @@
 		880E00802891207900459185 /* Skim */ = {
 			isa = PBXGroup;
 			children = (
+				8876546F2CB05786001FE69C /* SettingsView.swift */,
+				8876546B2CB05373001FE69C /* ArticleListView.swift */,
+				887654692CB0532C001FE69C /* Article.swift */,
 				880E00812891207900459185 /* SkimApp.swift */,
 				880E00832891207900459185 /* ContentView.swift */,
 				880E00852891207A00459185 /* Assets.xcassets */,
 				880E00872891207A00459185 /* Preview Content */,
 				88C0D60A2AC73D000011836A /* ReadingView.swift */,
+				887654632CB04D5F001FE69C /* FileStorageManager.swift */,
+				887654712CB05960001FE69C /* SettingsPopupView.swift */,
 			);
 			path = Skim;
 			sourceTree = "<group>";
@@ -148,9 +163,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				887654722CB05960001FE69C /* SettingsPopupView.swift in Sources */,
 				88C0D60B2AC73D000011836A /* ReadingView.swift in Sources */,
+				887654702CB05788001FE69C /* SettingsView.swift in Sources */,
+				8876546C2CB05374001FE69C /* ArticleListView.swift in Sources */,
+				8876546A2CB0532D001FE69C /* Article.swift in Sources */,
 				880E00842891207900459185 /* ContentView.swift in Sources */,
 				880E00822891207900459185 /* SkimApp.swift in Sources */,
+				887654642CB04D5F001FE69C /* FileStorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

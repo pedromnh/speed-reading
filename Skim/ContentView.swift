@@ -16,10 +16,12 @@ struct ContentView: View {
     @State private var isShowingReadingView = false
     
     
+    //The Original page
     var body: some View {
         NavigationView {
         VStack {
-            
+            NavigationLink("View Saved Articles", destination: ArticleListView())
+                            .padding()
             HStack {
 //                Button(
 //                    action: {isUrl(text: pasteText()!)},
@@ -48,15 +50,7 @@ struct ContentView: View {
                             .foregroundColor(colorScheme == .dark ? Color.black : Color.white)
                             .clipShape(Circle())
                 })
-                
-                
-//                NavigationLink(destination: ReadingView(), isActive: $isShowingReadingView) {
-//                    EmptyView();
-//                }
-                .sheet(isPresented: $isShowingReadingView) {
-                    ReadingView(wpm: wpm)
-                }
-            }
+            }.navigationTitle("Skim")
             
             
             
@@ -86,10 +80,10 @@ struct ContentView: View {
 //                    Text("\(maxWpm)")
                 }.accentColor(colorScheme == .dark ? Color.white : Color.black)
                     .padding(.horizontal)
-                    .scaleEffect(x: 1.0, y: 0.3, anchor: .center) // Make the slider thinner
+                    .scaleEffect(x: 1.0, y: 0.3, anchor: .center)
                     .background(
                         Capsule()
-                            .fill(colorScheme == .dark ? Color.black : Color.white) // Background color
+                            .fill(colorScheme == .dark ? Color.black : Color.white)
                             .frame(height: 8))
             }
             
@@ -117,20 +111,29 @@ func readString(sentence: String, wpm: Double) {
 }
 
 
-func getTextFromUrl(urlToRead: String) -> String {
+func getTextFromUrl(urlToRead: String) -> (String, String) {
     if let url = URL(string: urlToRead) {
         do {
             let contentOfURL = try String(contentsOf: url)
-            let html = contentOfURL
-            let doc: Document = try SwiftSoup.parse(html)
-            return try doc.text()
+            let doc: Document = try SwiftSoup.parse(contentOfURL)
+            
+            // Extract the first header
+            let title: String
+            if let header = try? doc.select("h1, h2").first() {
+                title = try header.text() ?? "No Title Found"
+            } else {
+                title = "No Title Found"
+            }
+            
+            let bodyText = try doc.text()
+            return (title, bodyText)
         } catch {
             print("Error: \(error)")
-            return "Error: \(error)"
+            return ("Error", "Error: \(error)")
         }
     } else {
         print("Invalid URL")
-        return "Invalid URL"
+        return ("Invalid URL", "Error: Invalid URL")
     }
 }
 
@@ -191,12 +194,34 @@ func isUrl(text: String) -> Bool {
 }
 
 
+//func whatToPrint(isUrl: Bool, sentence: String, wpm: Double) {
+//    if isUrl {
+//        readString(sentence: getTextFromUrl(urlToRead: pasteText() ?? "Error pasting"), wpm: wpmSpeed(wpm: wpm))
+//    } else{
+//        readString(sentence: pasteText() ?? "Error", wpm: wpmSpeed(wpm: wpm))
+//    }
+//}
+
 func whatToPrint(isUrl: Bool, sentence: String, wpm: Double) {
+    let contentAndTitle: (title: String, body: String)
+    
     if isUrl {
-        readString(sentence: getTextFromUrl(urlToRead: pasteText() ?? "Error pasting"), wpm: wpmSpeed(wpm: wpm))
-    } else{
-        readString(sentence: pasteText() ?? "Error", wpm: wpmSpeed(wpm: wpm))
+        contentAndTitle = getTextFromUrl(urlToRead: pasteText() ?? "Error pasting")
+    } else {
+        contentAndTitle = ("Pasted Text", pasteText() ?? "Error")
     }
+    
+    let (title, body) = contentAndTitle
+    
+    let newArticle = Article(title: title, body: body)
+    
+    var articles = FileStorageManager.shared.loadArticles()
+    
+    articles.append(newArticle)
+    
+    FileStorageManager.shared.saveArticles(articles)
+    
+    readString(sentence: body, wpm: wpmSpeed(wpm: wpm))
 }
 
 
