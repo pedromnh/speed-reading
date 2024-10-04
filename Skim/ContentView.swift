@@ -10,13 +10,14 @@ import SwiftSoup
 
 struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
-    @State private var phrase = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultricies augue quis lectus facilisis posuere. Quisque vel tempus ante. Vivamus molestie arcu vitae lacus pharetra pharetra. Sed nec ligula sit amet purus consequat mollis. Duis tristique massa sed vestibulum tincidunt. Fusce ultricies, neque id tincidunt consequat, velit sapien malesuada mi, in vulputate nulla tellus vitae elit. Pellentesque scelerisque vitae justo sed volutpat. Duis sodales dictum eleifend. Nunc a massa dictum, vulputate urna non, porttitor magna. Fusce convallis quam sed hendrerit viverra. Mauris hendrerit urna ac fringilla aliquet. Aenean lacinia viverra efficitur. Ut sollicitudin, purus ac fermentum tincidunt, urna turpis condimentum orci, eget dictum quam sapien euismod risus."
     @State private var wpm = 750.0
     @State private var minWpm = 0
     @State private var maxWpm = 1500
+    @State private var isShowingReadingView = false
     
     
     var body: some View {
+        NavigationView {
         VStack {
             
             HStack {
@@ -30,7 +31,16 @@ struct ContentView: View {
 //                            .cornerRadius(15)
 //                })
                 Button(
-                    action: {whatToPrint(isUrl: isUrl(text: pasteText()!), sentence: pasteText()!, wpm: wpm)},
+                    action: {isShowingReadingView = true},
+                    label: {Text("Test Button")
+                            .fontWeight(.heavy)
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(15)
+                })
+                Button(
+                    action: {whatToPrint(isUrl: isUrl(text: pasteText()!), sentence: pasteText()!, wpm: wpm); isShowingReadingView = true},
                     label: {Text("+")
                             .fontWeight(.heavy)
                             .padding()
@@ -38,6 +48,14 @@ struct ContentView: View {
                             .foregroundColor(colorScheme == .dark ? Color.black : Color.white)
                             .clipShape(Circle())
                 })
+                
+                
+//                NavigationLink(destination: ReadingView(), isActive: $isShowingReadingView) {
+//                    EmptyView();
+//                }
+                .sheet(isPresented: $isShowingReadingView) {
+                    ReadingView(wpm: wpm)
+                }
             }
             
             
@@ -77,6 +95,7 @@ struct ContentView: View {
             
             
         }.padding()
+    }
     }
     
 }
