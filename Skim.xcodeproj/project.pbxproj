@@ -23,6 +23,7 @@
 		8876546A2CB0532D001FE69C /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887654692CB0532C001FE69C /* Article.swift */; };
 		8876546C2CB05374001FE69C /* ArticleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876546B2CB05373001FE69C /* ArticleListView.swift */; };
 		887654722CB05960001FE69C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887654712CB05960001FE69C /* SettingsView.swift */; };
+		888152962CB45D9E00EB1E63 /* FileStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887654632CB04D5F001FE69C /* FileStorageManager.swift */; };
 		88C0D60B2AC73D000011836A /* ReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0D60A2AC73D000011836A /* ReadingView.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		887654692CB0532C001FE69C /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		8876546B2CB05373001FE69C /* ArticleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListView.swift; sourceTree = "<group>"; };
 		887654712CB05960001FE69C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		888152922CB45BD900EB1E63 /* Skim.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Skim.entitlements; sourceTree = "<group>"; };
 		88C0D60A2AC73D000011836A /* ReadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +125,7 @@
 		880E00802891207900459185 /* Skim */ = {
 			isa = PBXGroup;
 			children = (
+				888152922CB45BD900EB1E63 /* Skim.entitlements */,
 				880E00812891207900459185 /* SkimApp.swift */,
 				88042BF92CB43FC000941571 /* SkimViewModel.swift */,
 				887654692CB0532C001FE69C /* Article.swift */,
@@ -268,6 +271,7 @@
 			files = (
 				8865330C2CB449B2008B96A5 /* URLTextExtractor.swift in Sources */,
 				88042BF22CB437DC00941571 /* Article.swift in Sources */,
+				888152962CB45D9E00EB1E63 /* FileStorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +308,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = SaveToArticles/SaveToArticles.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 26UR5VM535;
@@ -336,6 +341,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = SaveToArticles/SaveToArticles.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 26UR5VM535;
@@ -483,6 +489,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Skim/Skim.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Skim/Preview Content\"";
@@ -512,6 +519,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Skim/Skim.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Skim/Preview Content\"";

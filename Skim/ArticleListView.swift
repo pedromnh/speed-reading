@@ -48,6 +48,9 @@ struct ArticleListView: View {
                             indexSet.forEach { viewModel.deleteArticle(viewModel.articles[$0]) }
                         }
                     }
+                    .refreshable {
+                        viewModel.loadArticles()
+                    }
                     .navigationTitle("Skim")
                     .navigationBarItems(trailing: settingsButton)
                 }
