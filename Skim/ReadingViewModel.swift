@@ -39,7 +39,6 @@ class ReadingViewModel: ObservableObject {
     }
 
     func restartReading() {
-        displayedWord = "►"
         currentIndex = 0
         hasEnded = false
         isReading = true

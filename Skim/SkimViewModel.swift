@@ -13,6 +13,12 @@ class SkimViewModel: ObservableObject {
     let minWpm = 0
     let maxWpm = 1500
     @Published var isShowingReadingView = false
+    let getTextFromUrl: (String) -> (String, String)
+    
+    // Change the initializer to accept a closure for URL extraction
+    init(getTextFromUrl: @escaping (String) -> (String, String) = URLTextExtractor.getTextFromUrl) {
+        self.getTextFromUrl = getTextFromUrl
+    }
     
     func whatToPrint(isUrl: Bool, sentence: String) {
         let contentAndTitle: (title: String, body: String)
