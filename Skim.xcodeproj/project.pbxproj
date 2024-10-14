@@ -15,6 +15,7 @@
 		880E00822891207900459185 /* SkimApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880E00812891207900459185 /* SkimApp.swift */; };
 		880E00862891207A00459185 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 880E00852891207A00459185 /* Assets.xcassets */; };
 		880E00892891207A00459185 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 880E00882891207A00459185 /* Preview Assets.xcassets */; };
+		8830D7A52CBC872D009A9739 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8830D7A42CBC872A009A9739 /* Logger.swift */; };
 		884E3FB029BB56B300B94ACE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 884E3FAF29BB56B300B94ACE /* SwiftSoup */; };
 		886533092CB445C5008B96A5 /* URLTextExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886533082CB445C5008B96A5 /* URLTextExtractor.swift */; };
 		8865330C2CB449B2008B96A5 /* URLTextExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886533082CB445C5008B96A5 /* URLTextExtractor.swift */; };
@@ -24,6 +25,7 @@
 		8876546C2CB05374001FE69C /* ArticleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8876546B2CB05373001FE69C /* ArticleListView.swift */; };
 		887654722CB05960001FE69C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887654712CB05960001FE69C /* SettingsView.swift */; };
 		888152962CB45D9E00EB1E63 /* FileStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887654632CB04D5F001FE69C /* FileStorageManager.swift */; };
+		889B68D92CBC91BF00A9F887 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8830D7A42CBC872A009A9739 /* Logger.swift */; };
 		88C0D60B2AC73D000011836A /* ReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0D60A2AC73D000011836A /* ReadingView.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +69,7 @@
 		880E00812891207900459185 /* SkimApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkimApp.swift; sourceTree = "<group>"; };
 		880E00852891207A00459185 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		880E00882891207A00459185 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8830D7A42CBC872A009A9739 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		886533082CB445C5008B96A5 /* URLTextExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLTextExtractor.swift; sourceTree = "<group>"; };
 		887654632CB04D5F001FE69C /* FileStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageManager.swift; sourceTree = "<group>"; };
 		887654692CB0532C001FE69C /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
@@ -143,6 +146,7 @@
 		880E00802891207900459185 /* Skim */ = {
 			isa = PBXGroup;
 			children = (
+				8830D7A42CBC872A009A9739 /* Logger.swift */,
 				888152922CB45BD900EB1E63 /* Skim.entitlements */,
 				880E00812891207900459185 /* SkimApp.swift */,
 				88042BF92CB43FC000941571 /* SkimViewModel.swift */,
@@ -322,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				889B68D92CBC91BF00A9F887 /* Logger.swift in Sources */,
 				8865330C2CB449B2008B96A5 /* URLTextExtractor.swift in Sources */,
 				88042BF22CB437DC00941571 /* Article.swift in Sources */,
 				888152962CB45D9E00EB1E63 /* FileStorageManager.swift in Sources */,
@@ -333,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				887654722CB05960001FE69C /* SettingsView.swift in Sources */,
+				8830D7A52CBC872D009A9739 /* Logger.swift in Sources */,
 				88C0D60B2AC73D000011836A /* ReadingView.swift in Sources */,
 				88042BFA2CB43FC000941571 /* SkimViewModel.swift in Sources */,
 				88042BF82CB439E700941571 /* ReadingViewModel.swift in Sources */,

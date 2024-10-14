@@ -10,13 +10,11 @@ import SwiftSoup
 
 class SkimViewModel: ObservableObject {
     @Published var wpm: Double = 750.0
-    let minWpm = 0
-    let maxWpm = 1500
-    @Published var isShowingReadingView = false
-    let getTextFromUrl: (String) -> (String, String)
+    let minWordsPerMinute = 0
+    let maxWordsPerMinute = 1500
+    let getTextFromUrl: (String) -> Result<Article, URLTextError>
     
-    // Change the initializer to accept a closure for URL extraction
-    init(getTextFromUrl: @escaping (String) -> (String, String) = URLTextExtractor.getTextFromUrl) {
+    init(getTextFromUrl: @escaping (String) -> Result<Article, URLTextError> = URLTextExtractor.getTextFromUrl) {
         self.getTextFromUrl = getTextFromUrl
     }
     
@@ -24,9 +22,15 @@ class SkimViewModel: ObservableObject {
         let contentAndTitle: (title: String, body: String)
         
         if isUrl {
-            contentAndTitle = getTextFromUrl(urlToRead: pasteText() ?? "Error pasting")
+            let result = getTextFromUrl(urlToRead: pasteText() ?? "Error pasting")
+            switch result {
+            case .success(let article):
+                contentAndTitle = (title: article.title, body: article.body)
+            case .failure(let error):
+                contentAndTitle = (title: "Error", body: error.localizedDescription)
+            }
         } else {
-            contentAndTitle = ("Pasted Text", pasteText() ?? "Error")
+            contentAndTitle = (title: "Pasted Text", body: pasteText() ?? "Error")
         }
         
         let (title, body) = contentAndTitle
@@ -65,24 +69,21 @@ class SkimViewModel: ObservableObject {
         return text.hasPrefix("http") || text.hasPrefix("www")
     }
 
-    func getTextFromUrl(urlToRead: String) -> (String, String) {
-//        if let url = URL(string: urlToRead) {
-//            do {
-//                let contentOfURL = try String(contentsOf: url)
-//                let doc: Document = try SwiftSoup.parse(contentOfURL)
-//                
-//                let title = try doc.select("h1, h2").first()?.text() ?? "No Title Found"
-//                let bodyText = try doc.text()
-//                
-//                return (title, bodyText)
-//            } catch {
-//                print("Error: \(error)")
-//                return ("Error", "Error: \(error)")
-//            }
-//        } else {
-//            print("Invalid URL")
-//            return ("Invalid URL", "Error: Invalid URL")
-//        }
-        return URLTextExtractor.getTextFromUrl(urlToRead: urlToRead)
+    func getTextFromUrl(urlToRead: String) -> Result<Article, URLTextError> {
+        let result = URLTextExtractor.getTextFromUrl(urlToRead: urlToRead)
+        
+        switch result {
+        case .success(let article):
+            return .success(Article(title: article.title, body: article.body))
+        case .failure(let error):
+            switch error {
+            case .invalidURL:
+                return .failure(.invalidURL)
+            case .fetchError(let fetchError):
+                return .failure(.fetchError(fetchError))
+            case .parseError(let parseError):
+                return .failure(.parseError(parseError))
+            }
+        }
     }
 }

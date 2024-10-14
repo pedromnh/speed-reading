@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OSLog
 
 class FileStorageManager {
     static let shared = FileStorageManager()
@@ -20,7 +21,7 @@ class FileStorageManager {
             do {
                 try FileManager.default.createDirectory(at: documentsDirectory, withIntermediateDirectories: true, attributes: nil)
             } catch {
-                print("Error creating documents directory: \(error.localizedDescription)")
+                Logger.fileStorage.error("Error creating documents directory: \(error.localizedDescription)")
             }
         }
         return documentsDirectory
@@ -32,9 +33,9 @@ class FileStorageManager {
         do {
             let data = try JSONEncoder().encode(articles)
             try data.write(to: fileURL, options: [.atomic, .completeFileProtection])
-            print("Articles saved successfully at \(fileURL.path)")
+            Logger.fileStorage.info("Articles saved successfully at \(fileURL.path)")
         } catch {
-            print("Error saving articles: \(error.localizedDescription)")
+            Logger.fileStorage.error("Error saving articles: \(error.localizedDescription)")
         }
     }
 
@@ -42,7 +43,7 @@ class FileStorageManager {
         let fileURL = getDocumentsDirectory().appendingPathComponent(filename)
         
         if !FileManager.default.fileExists(atPath: fileURL.path) {
-            print("File does not exist, creating empty articles.json")
+            Logger.fileStorage.info("File does not exist, creating empty articles.json")
             saveArticles([])
         }
         
@@ -51,7 +52,7 @@ class FileStorageManager {
             let articles = try JSONDecoder().decode([Article].self, from: data)
             return articles
         } catch {
-            print("Error loading articles: \(error.localizedDescription)")
+            Logger.fileStorage.error("Error loading articles: \(error.localizedDescription)")
             return []
         }
     }

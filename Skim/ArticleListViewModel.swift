@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import OSLog
 
 class ArticleListViewModel: ObservableObject {
-    @Published var articles: [Article] = []
+    @Published private(set) var articles: [Article] = []
     @Published var wpm: Double = 300
     @Published var isShowingSettings = false
     @StateObject var viewModel = SkimViewModel()
@@ -22,10 +23,16 @@ class ArticleListViewModel: ObservableObject {
     }
 
     func saveArticle(from url: String) {
-        let (title, body) = viewModel.getTextFromUrl(urlToRead: url)
-        let newArticle = Article(title: title, body: body)
-        articles.append(newArticle)
-        FileStorageManager.shared.saveArticles(articles)
+        let result = viewModel.getTextFromUrl(urlToRead: url)
+        
+        switch result {
+        case .success(let article):
+            let newArticle = Article(title: article.title, body: article.body)
+            articles.append(newArticle)
+            FileStorageManager.shared.saveArticles(articles)
+        case .failure(let error):
+            Logger.urlProcessing.error("Error fetching article: \(error.localizedDescription)")
+        }
     }
 
     func deleteArticle(_ article: Article) {

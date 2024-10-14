@@ -12,3 +12,9 @@ struct Article: Codable, Identifiable {
     var title: String
     var body: String
 }
+
+enum URLTextError: Error {
+    case invalidURL
+    case fetchError(Error)
+    case parseError(Error)
+}
