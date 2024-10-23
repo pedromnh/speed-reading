@@ -53,22 +53,28 @@ class SkimTests: XCTestCase {
         XCTAssertEqual(result, "Test clipboard text")
     }
 
-    func testGetTextFromUrl() {
+    func testGetTextFromUrl() async {
         // Given (Arrange)
         let expectedTitle = "The World of Warcraft 20th Anniversary Celebration Update Goes Live October 22!"
         let expectedBody = "Article Body"
         
-        let mockGetTextFromUrl: (String) -> (String, String) = { _ in
-            return (expectedTitle, expectedBody)
+        let mockGetTextFromUrl: (String) async -> Result<Article, URLTextError> = { _ in
+            let article = Article(title: expectedTitle, body: expectedBody)
+            return .success(article)
         }
         
         let viewModel = SkimViewModel(getTextFromUrl: mockGetTextFromUrl)
         
         // When (Act)
-        let (title, _) = viewModel.getTextFromUrl(urlToRead: "https://worldofwarcraft.blizzard.com/en-us/news/24147266/the-world-of-warcraft-20th-anniversary-celebration-update-goes-live-october-22")
+        let result = await viewModel.getTextFromUrl("https://worldofwarcraft.blizzard.com/en-us/news/24147266/the-world-of-warcraft-20th-anniversary-celebration-update-goes-live-october-22")
         
-        // Then (Assert), Not checking body due to variables unrelated to the content of the article itself
-        XCTAssertEqual(title, expectedTitle)
-//        XCTAssertEqual(body, expectedBody)
+        // Then (Assert)
+        switch result {
+        case .success(let article):
+            XCTAssertEqual(article.title, expectedTitle)
+            // XCTAssertEqual(article.body, expectedBody)
+        case .failure(let error):
+            XCTFail("Expected success but got failure with error: \(error)")
+        }
     }
 }

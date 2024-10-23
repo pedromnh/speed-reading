@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "E5F3190E-F81C-4707-9207-8C806AE13B7D",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Skim.xcodeproj",
+        "identifier" : "8800ACB42CC9565200382B3F",
+        "name" : "SkimTests"
+      }
+    }
+  ],
+  "version" : 1
+}

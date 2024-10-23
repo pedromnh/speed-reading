@@ -31,19 +31,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8800ACB92CC9565200382B3F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 880E00762891207900459185 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 880E007D2891207900459185;
+			remoteInfo = Skim;
+		};
 		88042BEA2CB4327900941571 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 880E00762891207900459185 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 88042BE12CB4327900941571;
 			remoteInfo = SaveToArticles;
-		};
-		88D3D0542CB85B890023DA6D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 880E00762891207900459185 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 880E007D2891207900459185;
-			remoteInfo = Skim;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -62,6 +62,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8800ACB52CC9565200382B3F /* SkimTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkimTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88042BE22CB4327900941571 /* SaveToArticles.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SaveToArticles.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		88042BF52CB4399600941571 /* ArticleListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewModel.swift; sourceTree = "<group>"; };
 		88042BF72CB439E700941571 /* ReadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingViewModel.swift; sourceTree = "<group>"; };
@@ -79,7 +80,6 @@
 		887654712CB05960001FE69C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		888152922CB45BD900EB1E63 /* Skim.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Skim.entitlements; sourceTree = "<group>"; };
 		88C0D60A2AC73D000011836A /* ReadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingView.swift; sourceTree = "<group>"; };
-		88D3D0502CB85B890023DA6D /* SkimTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkimTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -93,11 +93,18 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		8800ACB62CC9565200382B3F /* SkimTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SkimTests; sourceTree = "<group>"; };
 		88042BE32CB4327900941571 /* SaveToArticles */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (88042BF02CB4327900941571 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SaveToArticles; sourceTree = "<group>"; };
-		88D3D0512CB85B890023DA6D /* SkimTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SkimTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8800ACB22CC9565200382B3F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		88042BDF2CB4327900941571 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -114,13 +121,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		88D3D04D2CB85B890023DA6D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -129,7 +129,7 @@
 			children = (
 				880E00802891207900459185 /* Skim */,
 				88042BE32CB4327900941571 /* SaveToArticles */,
-				88D3D0512CB85B890023DA6D /* SkimTests */,
+				8800ACB62CC9565200382B3F /* SkimTests */,
 				8865330D2CB44A9F008B96A5 /* Frameworks */,
 				880E007F2891207900459185 /* Products */,
 			);
@@ -140,7 +140,7 @@
 			children = (
 				880E007E2891207900459185 /* Skim.app */,
 				88042BE22CB4327900941571 /* SaveToArticles.appex */,
-				88D3D0502CB85B890023DA6D /* SkimTests.xctest */,
+				8800ACB52CC9565200382B3F /* SkimTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,6 +185,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8800ACB42CC9565200382B3F /* SkimTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8800ACBB2CC9565200382B3F /* Build configuration list for PBXNativeTarget "SkimTests" */;
+			buildPhases = (
+				8800ACB12CC9565200382B3F /* Sources */,
+				8800ACB22CC9565200382B3F /* Frameworks */,
+				8800ACB32CC9565200382B3F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8800ACBA2CC9565200382B3F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8800ACB62CC9565200382B3F /* SkimTests */,
+			);
+			name = SkimTests;
+			packageProductDependencies = (
+			);
+			productName = SkimTests;
+			productReference = 8800ACB52CC9565200382B3F /* SkimTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		88042BE12CB4327900941571 /* SaveToArticles */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 88042BF12CB4327900941571 /* Build configuration list for PBXNativeTarget "SaveToArticles" */;
@@ -230,29 +253,6 @@
 			productReference = 880E007E2891207900459185 /* Skim.app */;
 			productType = "com.apple.product-type.application";
 		};
-		88D3D04F2CB85B890023DA6D /* SkimTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 88D3D0562CB85B890023DA6D /* Build configuration list for PBXNativeTarget "SkimTests" */;
-			buildPhases = (
-				88D3D04C2CB85B890023DA6D /* Sources */,
-				88D3D04D2CB85B890023DA6D /* Frameworks */,
-				88D3D04E2CB85B890023DA6D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				88D3D0552CB85B890023DA6D /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				88D3D0512CB85B890023DA6D /* SkimTests */,
-			);
-			name = SkimTests;
-			packageProductDependencies = (
-			);
-			productName = SkimTests;
-			productReference = 88D3D0502CB85B890023DA6D /* SkimTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -263,15 +263,15 @@
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
+					8800ACB42CC9565200382B3F = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 880E007D2891207900459185;
+					};
 					88042BE12CB4327900941571 = {
 						CreatedOnToolsVersion = 16.0;
 					};
 					880E007D2891207900459185 = {
 						CreatedOnToolsVersion = 13.2;
-					};
-					88D3D04F2CB85B890023DA6D = {
-						CreatedOnToolsVersion = 16.0;
-						TestTargetID = 880E007D2891207900459185;
 					};
 				};
 			};
@@ -298,12 +298,19 @@
 			targets = (
 				880E007D2891207900459185 /* Skim */,
 				88042BE12CB4327900941571 /* SaveToArticles */,
-				88D3D04F2CB85B890023DA6D /* SkimTests */,
+				8800ACB42CC9565200382B3F /* SkimTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8800ACB32CC9565200382B3F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		88042BE02CB4327900941571 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -321,16 +328,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		88D3D04E2CB85B890023DA6D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8800ACB12CC9565200382B3F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
 		88042BDE2CB4327900941571 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -360,29 +367,69 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		88D3D04C2CB85B890023DA6D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8800ACBA2CC9565200382B3F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 880E007D2891207900459185 /* Skim */;
+			targetProxy = 8800ACB92CC9565200382B3F /* PBXContainerItemProxy */;
+		};
 		88042BEB2CB4327900941571 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 88042BE12CB4327900941571 /* SaveToArticles */;
 			targetProxy = 88042BEA2CB4327900941571 /* PBXContainerItemProxy */;
 		};
-		88D3D0552CB85B890023DA6D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 880E007D2891207900459185 /* Skim */;
-			targetProxy = 88D3D0542CB85B890023DA6D /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		8800ACBC2CC9565200382B3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pedromnh.SkimTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Skim.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Skim";
+			};
+			name = Debug;
+		};
+		8800ACBD2CC9565200382B3F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pedromnh.SkimTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Skim.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Skim";
+			};
+			name = Release;
+		};
 		88042BEE2CB4327900941571 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -628,56 +675,18 @@
 			};
 			name = Release;
 		};
-		88D3D0572CB85B890023DA6D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pedromnh.SkimTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Skim.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Skim";
-			};
-			name = Debug;
-		};
-		88D3D0582CB85B890023DA6D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pedromnh.SkimTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Skim.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Skim";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8800ACBB2CC9565200382B3F /* Build configuration list for PBXNativeTarget "SkimTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8800ACBC2CC9565200382B3F /* Debug */,
+				8800ACBD2CC9565200382B3F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		88042BF12CB4327900941571 /* Build configuration list for PBXNativeTarget "SaveToArticles" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -701,15 +710,6 @@
 			buildConfigurations = (
 				880E008D2891207A00459185 /* Debug */,
 				880E008E2891207A00459185 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		88D3D0562CB85B890023DA6D /* Build configuration list for PBXNativeTarget "SkimTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				88D3D0572CB85B890023DA6D /* Debug */,
-				88D3D0582CB85B890023DA6D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
