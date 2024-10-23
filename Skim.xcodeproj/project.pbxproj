@@ -16,6 +16,7 @@
 		880E00862891207A00459185 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 880E00852891207A00459185 /* Assets.xcassets */; };
 		880E00892891207A00459185 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 880E00882891207A00459185 /* Preview Assets.xcassets */; };
 		8830D7A52CBC872D009A9739 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8830D7A42CBC872A009A9739 /* Logger.swift */; };
+		883C1B7C2CC9495D00C0A524 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 883C1B7B2CC9495D00C0A524 /* Localizable.xcstrings */; };
 		884E3FB029BB56B300B94ACE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 884E3FAF29BB56B300B94ACE /* SwiftSoup */; };
 		886533092CB445C5008B96A5 /* URLTextExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886533082CB445C5008B96A5 /* URLTextExtractor.swift */; };
 		8865330C2CB449B2008B96A5 /* URLTextExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886533082CB445C5008B96A5 /* URLTextExtractor.swift */; };
@@ -70,6 +71,7 @@
 		880E00852891207A00459185 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		880E00882891207A00459185 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8830D7A42CBC872A009A9739 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		883C1B7B2CC9495D00C0A524 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		886533082CB445C5008B96A5 /* URLTextExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLTextExtractor.swift; sourceTree = "<group>"; };
 		887654632CB04D5F001FE69C /* FileStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageManager.swift; sourceTree = "<group>"; };
 		887654692CB0532C001FE69C /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				887654632CB04D5F001FE69C /* FileStorageManager.swift */,
 				880E00852891207A00459185 /* Assets.xcassets */,
 				880E00872891207A00459185 /* Preview Content */,
+				883C1B7B2CC9495D00C0A524 /* Localizable.xcstrings */,
 			);
 			path = Skim;
 			sourceTree = "<group>";
@@ -279,6 +282,11 @@
 			knownRegions = (
 				en,
 				Base,
+				"pt-PT",
+				sv,
+				fr,
+				de,
+				es,
 			);
 			mainGroup = 880E00752891207900459185;
 			packageReferences = (
@@ -309,6 +317,7 @@
 			files = (
 				880E00892891207A00459185 /* Preview Assets.xcassets in Resources */,
 				880E00862891207A00459185 /* Assets.xcassets in Resources */,
+				883C1B7C2CC9495D00C0A524 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +452,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -496,6 +506,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -504,6 +515,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -550,6 +562,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
