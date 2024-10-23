@@ -83,7 +83,9 @@ struct ArticleListView: View {
                 Spacer()
                 Button(action: {
                     if let pastedText = UIPasteboard.general.string, !pastedText.isEmpty {
-                        viewModel.saveArticle(from: pastedText)
+                        Task {
+                            await viewModel.saveArticle(from: pastedText)
+                        }
                     }
                 }) {
                     Image(systemName: "plus")

@@ -29,7 +29,11 @@ class ShareViewController: UIViewController {
                 attachment.loadItem(forTypeIdentifier: UTType.url.identifier) { (url, error) in
                     if let url = url as? URL {
                         self.logger.info("Shared URL received: \(url.absoluteString)")
-                        self.saveArticle(from: url.absoluteString)
+                        
+                        Task {
+                            await self.saveArticle(from: url.absoluteString)
+                        }
+                        
                     } else {
                         self.logger.error("Error loading URL: \(error?.localizedDescription ?? "Unable to load URL")")
                     }
@@ -40,8 +44,8 @@ class ShareViewController: UIViewController {
         }
     }
 
-    private func saveArticle(from url: String) {
-        let result = URLTextExtractor.getTextFromUrl(urlToRead: url)
+    private func saveArticle(from url: String) async {
+        let result = await URLTextExtractor.getTextFromUrl(urlToRead: url)
 
         switch result {
         case .success(let article):
@@ -61,6 +65,10 @@ class ShareViewController: UIViewController {
                 logger.error("Fetch Error: \(fetchError.localizedDescription)")
             case .parseError(let parseError):
                 logger.error("Parse Error: \(parseError.localizedDescription)")
+            case .invalidResponse:
+                logger.error("Invalid Response")
+            case .dataConversionFailed:
+                logger.error("Data Conversion Failed")
             }
             self.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
         }

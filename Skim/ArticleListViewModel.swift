@@ -22,8 +22,8 @@ class ArticleListViewModel: ObservableObject {
         articles = FileStorageManager.shared.loadArticles()
     }
 
-    func saveArticle(from url: String) {
-        let result = viewModel.getTextFromUrl(urlToRead: url)
+    func saveArticle(from url: String) async {
+        let result = await viewModel.getTextFromUrl(url)
         
         switch result {
         case .success(let article):

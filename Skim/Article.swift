@@ -17,4 +17,6 @@ enum URLTextError: Error {
     case invalidURL
     case fetchError(Error)
     case parseError(Error)
+    case invalidResponse
+    case dataConversionFailed
 }

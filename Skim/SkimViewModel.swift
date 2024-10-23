@@ -12,17 +12,17 @@ class SkimViewModel: ObservableObject {
     @Published var wpm: Double = 750.0
     let minWordsPerMinute = 0
     let maxWordsPerMinute = 1500
-    let getTextFromUrl: (String) -> Result<Article, URLTextError>
+    let getTextFromUrl: (String) async -> Result<Article, URLTextError>
     
-    init(getTextFromUrl: @escaping (String) -> Result<Article, URLTextError> = URLTextExtractor.getTextFromUrl) {
+    init(getTextFromUrl: @escaping (String) async -> Result<Article, URLTextError> = URLTextExtractor.getTextFromUrl) {
         self.getTextFromUrl = getTextFromUrl
     }
     
-    func whatToPrint(isUrl: Bool, sentence: String) {
+    func whatToPrint(isUrl: Bool, sentence: String) async {
         let contentAndTitle: (title: String, body: String)
         
         if isUrl {
-            let result = getTextFromUrl(urlToRead: pasteText() ?? "Error pasting")
+            let result = await getTextFromUrl(pasteText() ?? "Error pasting")
             switch result {
             case .success(let article):
                 contentAndTitle = (title: article.title, body: article.body)
@@ -67,23 +67,5 @@ class SkimViewModel: ObservableObject {
     
     func isUrl(text: String) -> Bool {
         return text.hasPrefix("http") || text.hasPrefix("www")
-    }
-
-    func getTextFromUrl(urlToRead: String) -> Result<Article, URLTextError> {
-        let result = URLTextExtractor.getTextFromUrl(urlToRead: urlToRead)
-        
-        switch result {
-        case .success(let article):
-            return .success(Article(title: article.title, body: article.body))
-        case .failure(let error):
-            switch error {
-            case .invalidURL:
-                return .failure(.invalidURL)
-            case .fetchError(let fetchError):
-                return .failure(.fetchError(fetchError))
-            case .parseError(let parseError):
-                return .failure(.parseError(parseError))
-            }
-        }
     }
 }

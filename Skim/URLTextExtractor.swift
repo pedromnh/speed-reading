@@ -10,16 +10,27 @@ import SwiftSoup
 import OSLog
 
 class URLTextExtractor {
-    static func getTextFromUrl(urlToRead: String) -> Result<Article, URLTextError> {
+    
+    static func getTextFromUrl(urlToRead: String) async -> Result<Article, URLTextError> {
         guard let url = URL(string: urlToRead) else {
             Logger.urlProcessing.error("Invalid URL: \(urlToRead)")
             return .failure(.invalidURL)
         }
         
         do {
-            let contentOfURL = try String(contentsOf: url)
-            let doc: Document = try SwiftSoup.parse(contentOfURL)
+            let (data, response) = try await URLSession.shared.data(from: url)
             
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                Logger.urlProcessing.error("Invalid response or status code.")
+                return .failure(.invalidResponse)
+            }
+            
+            guard let contentOfURL = String(data: data, encoding: .utf8) else {
+                Logger.urlProcessing.error("Failed to convert data to string.")
+                return .failure(.dataConversionFailed)
+            }
+            
+            let doc: Document = try SwiftSoup.parse(contentOfURL)
             let title = try doc.select("h1, h2").first()?.text() ?? "No Title Found"
             let bodyText = try doc.text()
             
@@ -27,6 +38,7 @@ class URLTextExtractor {
             
             let article = Article(title: title, body: bodyText)
             return .success(article)
+            
         } catch let fetchError as NSError {
             Logger.urlProcessing.error("Error fetching or parsing URL content: \(fetchError.localizedDescription)")
             return .failure(.fetchError(fetchError))
