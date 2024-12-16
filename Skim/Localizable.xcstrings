@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Add New Article" : {
+
+    },
     "Adjust Reading Speed" : {
       "localizations" : {
         "de" : {
@@ -34,6 +37,12 @@
           }
         }
       }
+    },
+    "Body" : {
+
+    },
+    "Cancel" : {
+
     },
     "Close" : {
       "localizations" : {
@@ -171,6 +180,9 @@
         }
       }
     },
+    "Save" : {
+
+    },
     "Skim" : {
       "localizations" : {
         "de" : {
@@ -204,6 +216,9 @@
           }
         }
       }
+    },
+    "Title" : {
+
     },
     "Words Per Minute: %lld" : {
       "localizations" : {

@@ -12,6 +12,10 @@ class ArticleListViewModel: ObservableObject {
     @Published private(set) var articles: [Article] = []
     @Published var wpm: Double = 300
     @Published var isShowingSettings = false
+    @Published var isShowingAddArticlePopup = false
+    @Published var newArticleTitle: String = ""
+    @Published var newArticleBody: String = ""
+    
     @StateObject var viewModel = SkimViewModel()
 
     init() {
@@ -33,6 +37,15 @@ class ArticleListViewModel: ObservableObject {
         case .failure(let error):
             Logger.urlProcessing.error("Error fetching article: \(error.localizedDescription)")
         }
+    }
+
+    func saveNewArticle() {
+        let newArticle = Article(title: newArticleTitle, body: newArticleBody)
+        articles.append(newArticle)
+        FileStorageManager.shared.saveArticles(articles)
+        newArticleTitle = ""
+        newArticleBody = ""
+        isShowingAddArticlePopup = false
     }
 
     func deleteArticle(_ article: Article) {

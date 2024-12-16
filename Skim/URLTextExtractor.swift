@@ -31,8 +31,13 @@ class URLTextExtractor {
             }
             
             let doc: Document = try SwiftSoup.parse(contentOfURL)
-            let title = try doc.select("h1, h2").first()?.text() ?? "No Title Found"
-            let bodyText = try doc.text()
+            let contentElements = try doc.select("article, .main-content, .post, .entry-content, .content")
+            
+            let bodyText = try contentElements.map { element in
+                try element.text()
+            }.joined(separator: "\n\n")
+            
+            let title = try doc.select("title, h1, h2").first()?.text() ?? "No Title Found"
             
             Logger.urlProcessing.info("Successfully fetched content from URL: \(urlToRead)")
             

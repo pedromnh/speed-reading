@@ -61,6 +61,9 @@ struct ArticleListView: View {
                 )
 
                 floatingButton
+                if viewModel.isShowingAddArticlePopup {
+                    addArticlePopup
+                }
             }
         }
         .tint(colorScheme == .dark ? .white : .black)
@@ -82,11 +85,7 @@ struct ArticleListView: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    if let pastedText = UIPasteboard.general.string, !pastedText.isEmpty {
-                        Task {
-                            await viewModel.saveArticle(from: pastedText)
-                        }
-                    }
+                    viewModel.isShowingAddArticlePopup = true
                 }) {
                     Image(systemName: "plus")
                         .font(.title)
@@ -100,10 +99,42 @@ struct ArticleListView: View {
             }
         }
     }
-}
 
-struct ArticleListView_Previews: PreviewProvider {
-    static var previews: some View {
-        ArticleListView()
+    var addArticlePopup: some View {
+        ZStack {
+            Color.black.opacity(0.4).edgesIgnoringSafeArea(.all)
+            
+            VStack(spacing: 16) {
+                Text("Add New Article")
+                    .font(.headline)
+                    .padding(.top)
+                
+                TextField("Title", text: $viewModel.newArticleTitle)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.horizontal)
+
+                TextField("Body", text: $viewModel.newArticleBody)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.horizontal)
+                    .frame(height: 100, alignment: .top)
+                
+                HStack {
+                    Button("Cancel") {
+                        viewModel.isShowingAddArticlePopup = false
+                    }
+                    .padding()
+                    
+                    Button("Save") {
+                        viewModel.saveNewArticle()
+                    }
+                    .padding().colorInvert()
+                }
+            }
+            .padding()
+            .background(Color.white)
+            .cornerRadius(12)
+            .shadow(radius: 10)
+            .padding(.horizontal, 40)
+        }
     }
 }

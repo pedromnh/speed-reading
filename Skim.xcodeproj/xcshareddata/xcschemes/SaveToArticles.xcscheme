@@ -50,7 +50,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8800ACA32CC9530700382B3F"
+               BlueprintIdentifier = "8800ACB42CC9565200382B3F"
                BuildableName = "SkimTests.xctest"
                BlueprintName = "SkimTests"
                ReferencedContainer = "container:Skim.xcodeproj">

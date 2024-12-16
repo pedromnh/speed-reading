@@ -11,6 +11,7 @@ import OSLog
 
 class ShareViewController: UIViewController {
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "ShareExtension")
+    private var savingPopup: SavingPopupView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,14 +27,16 @@ class ShareViewController: UIViewController {
 
         for attachment in attachments {
             if attachment.hasItemConformingToTypeIdentifier(UTType.url.identifier) {
-                attachment.loadItem(forTypeIdentifier: UTType.url.identifier) { (url, error) in
+                attachment.loadItem(forTypeIdentifier: UTType.url.identifier) { [weak self] (url, error) in
+                    guard let self = self else { return }
+                    
                     if let url = url as? URL {
                         self.logger.info("Shared URL received: \(url.absoluteString)")
-                        
+                        self.showSavingPopup()
+
                         Task {
                             await self.saveArticle(from: url.absoluteString)
                         }
-                        
                     } else {
                         self.logger.error("Error loading URL: \(error?.localizedDescription ?? "Unable to load URL")")
                     }
@@ -54,23 +57,37 @@ class ShareViewController: UIViewController {
             FileStorageManager.shared.saveArticles(articles)
 
             logger.info("Article saved successfully: \(article.title)")
-            
-            self.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
-
+            await showCompletionAndDismiss()
         case .failure(let error):
-            switch error {
-            case .invalidURL:
-                logger.error("Invalid URL: \(url)")
-            case .fetchError(let fetchError):
-                logger.error("Fetch Error: \(fetchError.localizedDescription)")
-            case .parseError(let parseError):
-                logger.error("Parse Error: \(parseError.localizedDescription)")
-            case .invalidResponse:
-                logger.error("Invalid Response")
-            case .dataConversionFailed:
-                logger.error("Data Conversion Failed")
+            logger.error("Error saving article: \(error.localizedDescription)")
+            await showCompletionAndDismiss()
+        }
+    }
+
+    private func showSavingPopup() {
+        DispatchQueue.main.async {
+            let popup = SavingPopupView()
+            popup.translatesAutoresizingMaskIntoConstraints = false
+            self.view.addSubview(popup)
+            
+            NSLayoutConstraint.activate([
+                popup.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                popup.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+                popup.topAnchor.constraint(equalTo: self.view.topAnchor),
+                popup.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+            ])
+            
+            self.savingPopup = popup
+        }
+    }
+
+    private func showCompletionAndDismiss() async {
+        await MainActor.run {
+            savingPopup?.showCompletion {
+                self.savingPopup?.removeFromSuperview()
+                self.savingPopup = nil
+                self.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
             }
-            self.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
         }
     }
 }
